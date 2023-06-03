@@ -24,11 +24,14 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "bip32": "^4.0.0",
     "bip39": "^3.1.0",
+    "bitcoinjs-lib": "^6.1.1",
     "ethereumjs-util": "^7.1.5",
     "ethereumjs-wallet": "^1.0.2",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "tiny-secp256k1": "^2.2.2"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",
