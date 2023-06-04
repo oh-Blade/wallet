@@ -8,6 +8,7 @@ import util from 'ethereumjs-util';
 //1 生成助记词 ；1.1 和 1.2 自己按需。
 
 // 1.1 生成助记词 ;这里用生成的.
+//如果是导入助记词 ，直接接收一个数组
 let mnemonic = bip39.generateMnemonic() 
 // let mnemonic_chinese = bip39.generateMnemonic(128,null,bip39.wordlists.chinese_simplified)
 // console.log("中文助记词： " + mnemonic_chinese)
@@ -54,3 +55,8 @@ const obtainAccount = async () => {
 };
 
 obtainAccount();
+
+/**
+ * 
+ * 
+ */
