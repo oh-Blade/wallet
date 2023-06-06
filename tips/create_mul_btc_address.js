@@ -27,3 +27,5 @@ const wallet = generateMultisigWallet(numSignatures, publicKeys);
 
 console.log('Address:', wallet.address);
 //Address: 2NGBQVmxnoFsC15gR52S46PZjrE8mXR418Q  balance : 0.01586134
+
+// expire case forest quarter plug music dirt only wrist cup hint mass
