@@ -1,7 +1,11 @@
 
 import pkg from 'bitcoinjs-lib';
-const { networks, Transaction, ECPair, payments } = pkg;
+import { ECPairFactory } from 'ecpair';
+import * as ecc from 'tiny-secp256k1';
 import axios from 'axios';
+
+const { networks, Transaction, payments } = pkg;
+const ECPair = ECPairFactory(ecc);
 
 // 比特币网络配置
 const network = networks.testnet; // 或者 networks.bitcoin (主网)
@@ -17,18 +21,18 @@ const amount = 0.001; // 要发送的比特币数量
 // 构建未签名交易
 const buildTransaction = async () => {
   const txb = new Transaction();
-  txb.version=1;
+  txb.version = 1;
 
-// 获取 UTXO（未使用的输出）
-// const utxos = await axios.get(`https://api.blockcypher.com/v1/btc/test3/addrs/${inputAddress}?unspentOnly=true`);
-// const utxo = utxos.data.txrefs[0];
+  // 获取 UTXO（未使用的输出）
+  // const utxos = await axios.get(`https://api.blockcypher.com/v1/btc/test3/addrs/${inputAddress}?unspentOnly=true`);
+  // const utxo = utxos.data.txrefs[0];
 
-// // 添加输入
-// txb.addInput(utxo.tx_hash, utxo.tx_output_n);
+  // // 添加输入
+  // txb.addInput(utxo.tx_hash, utxo.tx_output_n);
 
-
-  txb.addInput(Buffer.from('fc41b08625d3e1dc4edd266a8aa7e308ed5581dc1decb92cba590de4511dfae0'), 0); // 添加输入，替换为实际交易的txid和vout索引
-  txb.addOutput(outputAddress, Math.round(amount * 1e8)); // 添加输出
+  const txnIdBuffer = Buffer.from('fc41b08625d3e1dc4edd266a8aa7e308ed5581dc1decb92cba590de4511dfae0', 'hex');
+  txb.addInput(txnIdBuffer, 0); // 添加输入，替换为实际交易的txid和vout索引
+  txb.addOutput(Buffer.from(outputAddress), Math.round(amount * 1e8)); // 添加输出
   return txb;
 };
 
