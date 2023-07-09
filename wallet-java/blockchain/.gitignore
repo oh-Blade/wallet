@@ -22,7 +22,7 @@ target/**
 build/**
 **/build/**
 **/out/**
-
+**/.idea/**
 .idea/**
 .gradle/**
 out/**
