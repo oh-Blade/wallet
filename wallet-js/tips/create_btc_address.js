@@ -9,7 +9,13 @@ import util from 'ethereumjs-util';
 
 //设置生成测试or正式环境的钱包
 const network = bitcoin.networks.testnet // 主网 bitcoin.networks.bitcoin
-var mnemonic = bip39.generateMnemonic()
+
+//生成助记词
+var mnemonic = bip39.generateMnemonic();
+
+// 根据助记词导入钱包
+// var mnemonic = 'rice plunge cake awake rain floor roof minor acquire uncle fish cliff'; //bip39.generateMnemonic()
+
 console.log("助记词：", mnemonic)
 // 计算seed:
 //2.将助记词转成seed
@@ -19,7 +25,9 @@ const getSeed = async () => {
   console.log("seed：" + util.bufferToHex(seed))
   return seed
 }
-
+/**
+ * 生成助记词 私钥 公钥 钱包地址
+ */
 const obtainAccount = async () => {
   let seed = await getSeed()
   const root = bip32.fromSeed(seed, network)

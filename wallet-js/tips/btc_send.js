@@ -1,14 +1,14 @@
 
-import pkg from 'bitcoinjs-lib';
-import { ECPairFactory } from 'ecpair';
-import * as ecc from 'tiny-secp256k1';
+import * as bitcoin from 'bitcoinjs-lib';
+// import { ECPairFactory } from 'ecpair';
+// import * as ecc from 'tiny-secp256k1';
 import axios from 'axios';
 
-const { networks, Transaction, payments } = pkg;
-const ECPair = ECPairFactory(ecc);
+// const { networks, Transaction, payments } = pkg;
+// const ECPair = ECPairFactory(ecc);
 
 // 比特币网络配置
-const network = networks.testnet; // 或者 networks.bitcoin (主网)
+const network = bitcoin.networks.testnet; // 或者 networks.bitcoin (主网)
 
 // 输入地址和私钥
 const inputAddress = 'n27wuqct6CzfCisRxEXD6WkhR1NzCuz2z2';
@@ -20,7 +20,7 @@ const amount = 0.001; // 要发送的比特币数量
 
 // 构建未签名交易
 const buildTransaction = async () => {
-  const txb = new Transaction();
+  const txb = new bitcoin.Transaction();
   txb.version = 1;
 
   // 获取 UTXO（未使用的输出）
@@ -38,12 +38,12 @@ const buildTransaction = async () => {
 
 // 签名交易
 const signTransaction = async (transaction, privateKey) => {
-  const keyPair = ECPair.fromWIF(privateKey, network);
+  const keyPair = bitcoin.ECPair.fromWIF(privateKey, network);
   transaction.sign(0, keyPair);
   return transaction;
 };
-
-// 广播交易
+//
+// 广播交易  kFV3m9cPbnPEcZ
 const broadcastTransaction = async (transaction) => {
   const txHex = transaction.toHex();
   const broadcastUrl = 'https://api.blockcypher.com/v1/btc/test3/txs/push';
