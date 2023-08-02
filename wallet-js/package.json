@@ -24,6 +24,8 @@
     "@nestjs/common": "^9.0.0",
     "@nestjs/core": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
+    "bitcore-wallet-client": "10.0.7",
+    "ejs":"3.1.9",
     "axios": "^1.4.0",
     "bip32": "^4.0.0",
     "bip39": "^3.1.0",
